@@ -1,53 +1,142 @@
-import Link from "next/link";
+'use client';
 
-import { LatestPost } from "~/app/_components/post";
-import { api, HydrateClient } from "~/trpc/server";
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
-export default async function Home() {
-  const hello = await api.post.hello({ text: "from tRPC" });
+export default function Home() {
+  const [fade, setFade] = useState(false);
 
-  void api.post.getLatest.prefetch();
+  useEffect(() => {
+    setFade(true);
+  }, []);
 
   return (
-    <HydrateClient>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-            Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-          </h1>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-              href="https://create.t3.gg/en/usage/first-steps"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">First Steps →</h3>
-              <div className="text-lg">
-                Just the basics - Everything you need to know to set up your
-                database and authentication.
+    <main>
+      <section className="bg-zinc-900 min-h-screen w-full" id="home">
+        <div
+          className={`transition-opacity duration-1000 ease-in-out ${
+            fade ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <div className="flex items-center justify-center min-h-screen px-4 max-w-7xl mx-auto gap-48 relative">
+            <div className="flex-shrink-0">
+              <img
+                src="/profile_picture.png"
+                alt="Foto de Perfil - Tiago Vieira da Silva"
+                className="h-[360px] w-[360px] rounded-full"
+              />
+              <div className="flex items-center justify-center gap-3 mt-4">
+                <a
+                  href="https://github.com/tiagosdev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src="/github.png" alt="Github" className="w-10 h-10" />
+                </a>
+                <a
+                  href="https://discord.gg/9N23bsKXeb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src="/discord.png" alt="Discord" className="w-10 h-10" />
+                </a>
+                <a
+                  href="https://linkedin.com/in/tiagosdev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="/linkedin.png"
+                    alt="LinkedIn"
+                    className="w-10 h-10"
+                  />
+                </a>
+                <a
+                  href="https://x.com/tiagosdev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src="/x.png" alt="X (Twitter)" className="w-10 h-10" />
+                </a>
               </div>
-            </Link>
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-              href="https://create.t3.gg/en/introduction"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg">
-                Learn more about Create T3 App, the libraries it uses, and how
-                to deploy it.
-              </div>
-            </Link>
+            </div>
+            <div className="flex flex-col">
+              <h1 className="text-emerald-500 text-7xl font-bold mb-8">
+                BEM-VINDO,
+              </h1>
+              <p className="text-emerald-100 text-lg font-medium leading-relaxed">
+                O meu nome é{' '}
+                <span className="text-emerald-500">Tiago Vieira da Silva</span>{' '}
+                e sou um jovem desenvolvedor de software e web, natural de{' '}
+                <span className="text-emerald-500">Sines, Portugal</span>, com
+                uma grande paixão por{' '}
+                <span className="text-emerald-500">tecnologia e inovação</span>.
+                Atualmente, estou a tirar um curso de{' '}
+                <span className="text-emerald-500">Informática de Gestão</span>,
+                onde aprofundo os meus conhecimentos em{' '}
+                <span className="text-emerald-500">
+                  programação, desenvolvimento de aplicações
+                </span>{' '}
+                e <span className="text-emerald-500">gestão de sistemas</span>.
+                Tenho um forte interesse em{' '}
+                <span className="text-emerald-500">criar soluções</span>{' '}
+                digitais eficientes e intuitivas, sempre com o objetivo de
+                otimizar processos e
+                <span className="text-emerald-500">
+                  {' '}
+                  melhorar a experiência
+                </span>{' '}
+                do utilizador.
+              </p>
+            </div>
+            <div className="flex items-center justify-center absolute bottom-8">
+              <Link
+                href="#digital-skills"
+                scroll={false}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementById('digital-skills')
+                    ?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                <img
+                  src="/arrow.png"
+                  alt="Seta para baixo"
+                  className="w-10 h-10 animate-pulse"
+                />
+              </Link>
+            </div>
           </div>
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white">
-              {hello ? hello.greeting : "Loading tRPC query..."}
-            </p>
-          </div>
-
-          <LatestPost />
         </div>
-      </main>
-    </HydrateClient>
+      </section>
+      <section id="digital-skills">
+        <div className="bg-zinc-900 min-h-screen w-full flex flex-col">
+          <div className="flex items-center justify-center pt-4">
+            <Link
+              href="#home"
+              scroll={false}
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById('home')
+                  ?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <img
+                src="/arrow.png"
+                alt="Seta para baixo"
+                className="w-10 h-10 rotate-180 animate-pulse"
+              />
+            </Link>
+          </div>
+          <div className="flex items-center justify-center mt-12">
+            <h1 className="text-emerald-500 text-3xl font-bold mb-8">
+              Competências Digitais (Comming Soon)
+            </h1>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
