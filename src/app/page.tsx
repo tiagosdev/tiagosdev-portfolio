@@ -234,7 +234,7 @@ export default function Home() {
               </div>
               <div className="flex-shrink-0">
                 <img
-                  src="/digital-skills.png"
+                  src="/digitalskills.png"
                   alt="Digital Skills Ilustração"
                   className="w-[400px] h-[400px]"
                 />
