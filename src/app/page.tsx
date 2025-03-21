@@ -130,10 +130,116 @@ export default function Home() {
               />
             </Link>
           </div>
-          <div className="flex items-center justify-center mt-12">
-            <h1 className="text-emerald-500 text-3xl font-bold mb-8">
-              Competências Digitais (Comming Soon)
-            </h1>
+          <div>
+            <h2 className="text-emerald-500 text-6xl font-bold text-center mt-8 mb-16">
+              DIGITAL-SKILLS
+            </h2>
+            <div className="max-w-7xl mx-auto px-4 flex justify-between items-start animate-[pulse_5s_ease-in-out_infinite] opacity-100">
+              <div className="grid grid-cols-3 gap-8 max-w-[800px]">
+                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
+                  <img src="/dotnet.png" alt=".NET" className="w-12 h-12" />
+                  <div>
+                    <div className="text-emerald-500 font-bold">.NET</div>
+                    <div className="text-emerald-100 text-sm">Avançado</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
+                  <img src="/react.png" alt="React" className="w-12 h-12" />
+                  <div>
+                    <div className="text-emerald-500 font-bold">REACT</div>
+                    <div className="text-emerald-100 text-sm">Básico</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
+                  <img src="/nextjs.png" alt="NextJs" className="w-12 h-12" />
+                  <div>
+                    <div className="text-emerald-500 font-bold">NextJs</div>
+                    <div className="text-emerald-100 text-sm">Básico</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
+                  <img
+                    src="/typescript.png"
+                    alt="TypeScript"
+                    className="w-12 h-12"
+                  />
+                  <div>
+                    <div className="text-emerald-500 font-bold">TypeScript</div>
+                    <div className="text-emerald-100 text-sm">Básico</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
+                  <img
+                    src="/javascript.png"
+                    alt="JavaScript"
+                    className="w-12 h-12"
+                  />
+                  <div>
+                    <div className="text-emerald-500 font-bold">JavaScript</div>
+                    <div className="text-emerald-100 text-sm">Básico</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
+                  <img
+                    src="/tailwind.png"
+                    alt="TailwindCSS"
+                    className="w-12 h-12"
+                  />
+                  <div>
+                    <div className="text-emerald-500 font-bold">
+                      TailwindCSS
+                    </div>
+                    <div className="text-emerald-100 text-sm">Básico</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
+                  <img src="/lua.png" alt="Lua" className="w-12 h-12" />
+                  <div>
+                    <div className="text-emerald-500 font-bold">Lua</div>
+                    <div className="text-emerald-100 text-sm">Médio</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
+                  <img src="/sql.png" alt="SQL/MySQL" className="w-12 h-12" />
+                  <div>
+                    <div className="text-emerald-500 font-bold">SQL/MySQL</div>
+                    <div className="text-emerald-100 text-sm">Médio</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
+                  <img src="/c.png" alt="Linguagem C" className="w-12 h-12" />
+                  <div>
+                    <div className="text-emerald-500 font-bold">
+                      Linguagem C
+                    </div>
+                    <div className="text-emerald-100 text-sm">Básico</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
+                  <img src="/figma.png" alt="Figma" className="w-12 h-12" />
+                  <div>
+                    <div className="text-emerald-500 font-bold">Figma</div>
+                    <div className="text-emerald-100 text-sm">Avançado</div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex-shrink-0">
+                <img
+                  src="/digital-skills.png"
+                  alt="Digital Skills Ilustração"
+                  className="w-[400px] h-[400px]"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
