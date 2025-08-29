@@ -337,7 +337,7 @@ export default function Home() {
             </div>
             <div className="flex gap-4 mt-4">
               <a
-                href="https://github.com/atlaspap"
+                href="https://github.com/orgs/atlaspap/repositories"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-400 hover:text-blue-300 flex items-center gap-2"
