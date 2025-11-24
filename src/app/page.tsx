@@ -3,124 +3,185 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
+const SECTION_IDS = ['home', 'digital-skills', 'projects'] as const;
+type SectionId = (typeof SECTION_IDS)[number];
+
 export default function Home() {
   const [fade, setFade] = useState(false);
+  const [activeSection, setActiveSection] = useState<SectionId>(SECTION_IDS[0]);
 
   useEffect(() => {
     setFade(true);
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id as SectionId;
+            if (SECTION_IDS.includes(id)) {
+              setActiveSection(id);
+            }
+          }
+        });
+      },
+      { threshold: 0.55 }
+    );
+
+    SECTION_IDS.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const currentIndex = SECTION_IDS.indexOf(activeSection);
+  const prevSection = currentIndex > 0 ? SECTION_IDS[currentIndex - 1] : null;
+  const nextSection =
+    currentIndex < SECTION_IDS.length - 1
+      ? SECTION_IDS[currentIndex + 1]
+      : null;
+
+  const handleSmoothScroll = (id: SectionId) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <main>
-      <section className="bg-zinc-900 min-h-screen w-full" id="home">
-        <div
-          className={`transition-opacity duration-1000 ease-in-out ${
-            fade ? 'opacity-100' : 'opacity-0'
-          }`}
+    <>
+      <main className="bg-[#0c1018]">
+        <section
+          className="bg-[#0c1018] text-[#e2edff] min-h-screen w-full"
+          id="home"
         >
-          <div className="flex items-center justify-center min-h-screen px-4 max-w-7xl mx-auto gap-48 relative">
-            <div className="flex-shrink-0">
-              <img
-                src="/profile_picture.png"
-                alt="Foto de Perfil - Tiago Vieira da Silva"
-                className="h-[360px] w-[360px] rounded-full"
-              />
-              <div className="flex items-center justify-center gap-3 mt-4">
-                <a
-                  href="https://github.com/tiagosdev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+          <div
+            className={`transition-opacity duration-1000 ease-in-out ${
+              fade ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <div className="flex flex-col lg:flex-row items-center justify-between min-h-screen px-4 sm:px-6 py-16 max-w-6xl mx-auto gap-12 lg:gap-16 relative">
+              <div className="flex-shrink-0 flex flex-col items-center lg:-translate-x-4 transition-transform">
+                <div className="w-48 h-48 sm:w-64 sm:h-64 lg:w-[360px] lg:h-[360px] rounded-full p-2 border border-[#1b2a44]/40">
                   <img
-                    src="/github.png"
-                    alt="Github"
-                    className="w-10 h-10 brightness-0 invert filter-blue"
+                    src="/profile_picture.png"
+                    alt="Foto de Perfil - Tiago Vieira da Silva"
+                    className="h-full w-full rounded-full object-cover"
                   />
-                </a>
-                <a
-                  href="https://discord.gg/9N23bsKXeb"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                </div>
+                <div className="flex items-center justify-center gap-3 mt-6 flex-wrap">
+                  <a
+                    href="https://github.com/tiagosdev"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src="/github.png" alt="Github" className="w-8 h-8 sm:w-10 sm:h-10" />
+                  </a>
+                  <a
+                    href="https://discord.gg/9N23bsKXeb"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                   <img
                     src="/discord.png"
                     alt="Discord"
-                    className="w-10 h-10 brightness-0 invert filter-blue"
+                    className="w-8 h-8 sm:w-10 sm:h-10"
                   />
-                </a>
-                <a
-                  href="https://linkedin.com/in/tiagosdev"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/tiagosdev"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src="/linkedin.png"
+                      alt="LinkedIn"
+                      className="w-8 h-8 sm:w-10 sm:h-10"
+                    />
+                  </a>
+                  <a
+                    href="https://x.com/tiagosdev"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src="/x.png" alt="X (Twitter)" className="w-8 h-8 sm:w-10 sm:h-10" />
+                  </a>
+                </div>
+              </div>
+              <div className="flex flex-col max-w-3xl text-center lg:text-left">
+                <h1 className="text-[#7dc4ff] text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 tracking-wide">
+                  OLÁ,
+                </h1>
+                <p className="text-base sm:text-lg leading-relaxed text-[#f1f6ff]">
+                  Sou o{' '}
+                  <span className="text-[#6bc5ff] font-semibold">
+                    Tiago Vieira da Silva
+                  </span>
+                  , um jovem{' '}
+                  <span className="text-[#6bc5ff] font-semibold">
+                    desenvolvedor de software
+                  </span>{' '}
+                  e <span className="text-[#6bc5ff] font-semibold">web</span>{' '}
+                  natural de{' '}
+                  <span className="text-[#6bc5ff] font-semibold">
+                    Sines, Portugal
+                  </span>
+                  . Apaixonado por{' '}
+                  <span className="text-[#6bc5ff] font-semibold">
+                    tecnologia e inovação
+                  </span>
+                  , concluí um curso profissional de{' '}
+                  <span className="text-[#6bc5ff] font-semibold">
+                    Informática de Gestão
+                  </span>
+                  , onde aprofundei os meus conhecimentos técnicos e desenvolvi
+                  o{' '}
+                  <span className="text-[#6bc5ff] font-semibold">
+                    Projeto Atlas
+                  </span>
+                  . Gosto de transformar{' '}
+                  <span className="text-[#6bc5ff] font-semibold">ideias</span>{' '}
+                  em soluções digitais{' '}
+                  <span className="text-[#6bc5ff] font-semibold">
+                    funcionais
+                  </span>
+                  , combinando{' '}
+                  <span className="text-[#6bc5ff] font-semibold">
+                    eficiência, usabilidade e design
+                  </span>{' '}
+                  para criar experiências{' '}
+                  <span className="text-[#6bc5ff] font-semibold">
+                    modernas e intuitivas
+                  </span>
+                  .
+                </p>
+              </div>
+              <div className="flex lg:hidden items-center justify-center absolute bottom-8 w-full">
+                <Link
+                  href="#digital-skills"
+                  scroll={false}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document
+                      .getElementById('digital-skills')
+                      ?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                 >
                   <img
-                    src="/linkedin.png"
-                    alt="LinkedIn"
-                    className="w-10 h-10"
+                    src="/arrow.png"
+                    alt="Seta para baixo"
+                    className="w-10 h-10 animate-pulse"
                   />
-                </a>
-                <a
-                  href="https://x.com/tiagosdev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src="/x.png" alt="X (Twitter)" className="w-10 h-10" />
-                </a>
+                </Link>
               </div>
             </div>
-            <div className="flex flex-col">
-              <h1 className="text-blue-400 text-7xl font-bold mb-8">
-                BEM-VINDO,
-              </h1>
-              <p className="text-blue-100 text-lg font-medium leading-relaxed">
-                O meu nome é{' '}
-                <span className="text-blue-400">Tiago Vieira da Silva</span> e
-                sou um jovem desenvolvedor de software e web, natural de{' '}
-                <span className="text-blue-400">Sines, Portugal</span>, com uma
-                grande paixão por{' '}
-                <span className="text-blue-400">tecnologia e inovação</span>.
-                Atualmente, estou a tirar um curso de{' '}
-                <span className="text-blue-400">Informática de Gestão</span>,
-                onde aprofundo os meus conhecimentos em{' '}
-                <span className="text-blue-400">
-                  programação, desenvolvimento de aplicações
-                </span>{' '}
-                e <span className="text-blue-400">gestão de sistemas</span>.
-                Tenho um forte interesse em{' '}
-                <span className="text-blue-400">criar soluções</span> digitais
-                eficientes e intuitivas, sempre com o objetivo de otimizar
-                processos e
-                <span className="text-blue-400"> melhorar a experiência</span>{' '}
-                do utilizador.
-              </p>
-            </div>
-            <div className="flex items-center justify-center absolute bottom-8">
-              <Link
-                href="#digital-skills"
-                scroll={false}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document
-                    .getElementById('digital-skills')
-                    ?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                <img
-                  src="/arrow.png"
-                  alt="Seta para baixo"
-                  className="w-10 h-10 animate-pulse brightness-0 invert filter-blue"
-                />
-              </Link>
-            </div>
           </div>
-        </div>
-      </section>
-      <section
-        id="digital-skills"
-        className="bg-zinc-900 min-h-screen w-full relative"
-      >
-        <div className="flex flex-col h-full">
-          <div className="flex items-center justify-center pt-4">
+        </section>
+        <section
+          id="digital-skills"
+          className="bg-[#0c1018] min-h-screen w-full relative flex flex-col items-center justify-center overflow-hidden"
+        >
+          <div className="absolute top-6 w-full flex items-center justify-center lg:hidden">
             <Link
               href="#home"
               scroll={false}
@@ -138,114 +199,24 @@ export default function Home() {
               />
             </Link>
           </div>
-          <div>
-            <h2 className="text-blue-400 text-6xl font-bold text-center mt-8 mb-16">
-              DIGITAL-SKILLS
+          <div className="max-w-3xl mx-auto px-6 flex flex-col items-center text-center gap-6">
+            <h2 className="text-blue-400 text-5xl md:text-6xl font-bold">
+              Capacidades Técnicas
             </h2>
-            <div className="max-w-7xl mx-auto px-4 flex justify-between items-start ">
-              <div className="grid grid-cols-3 gap-8 max-w-[800px]">
-                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
-                  <img src="/dotnet.png" alt=".NET" className="w-12 h-12" />
-                  <div>
-                    <div className="text-blue-400 font-bold">.NET</div>
-                    <div className="text-blue-100 text-sm">Avançado</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
-                  <img src="/react.png" alt="React" className="w-12 h-12" />
-                  <div>
-                    <div className="text-blue-400 font-bold">REACT</div>
-                    <div className="text-blue-100 text-sm">Básico</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
-                  <img src="/nextjs.png" alt="NextJs" className="w-12 h-12" />
-                  <div>
-                    <div className="text-blue-400 font-bold">NextJs</div>
-                    <div className="text-blue-100 text-sm">Básico</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
-                  <img
-                    src="/typescript.png"
-                    alt="TypeScript"
-                    className="w-12 h-12"
-                  />
-                  <div>
-                    <div className="text-blue-400 font-bold">TypeScript</div>
-                    <div className="text-blue-100 text-sm">Básico</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
-                  <img
-                    src="/javascript.png"
-                    alt="JavaScript"
-                    className="w-12 h-12"
-                  />
-                  <div>
-                    <div className="text-blue-400 font-bold">JavaScript</div>
-                    <div className="text-blue-100 text-sm">Básico</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
-                  <img
-                    src="/tailwind.png"
-                    alt="TailwindCSS"
-                    className="w-12 h-12"
-                  />
-                  <div>
-                    <div className="text-blue-400 font-bold">TailwindCSS</div>
-                    <div className="text-blue-100 text-sm">Básico</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
-                  <img src="/lua.png" alt="Lua" className="w-12 h-12" />
-                  <div>
-                    <div className="text-blue-400 font-bold">Lua</div>
-                    <div className="text-blue-100 text-sm">Médio</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
-                  <img src="/sql.png" alt="SQL/MySQL" className="w-12 h-12" />
-                  <div>
-                    <div className="text-blue-400 font-bold">SQL/MySQL</div>
-                    <div className="text-blue-100 text-sm">Médio</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
-                  <img src="/c.png" alt="Linguagem C" className="w-12 h-12" />
-                  <div>
-                    <div className="text-blue-400 font-bold">Linguagem C</div>
-                    <div className="text-blue-100 text-sm">Básico</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 bg-zinc-800/50 rounded-2xl p-4">
-                  <img src="/figma.png" alt="Figma" className="w-12 h-12" />
-                  <div>
-                    <div className="text-blue-400 font-bold">Figma</div>
-                    <div className="text-blue-100 text-sm">Avançado</div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex-shrink-0">
-                <img
-                  src="/digitalskills.png"
-                  alt="Digital Skills Ilustração"
-                  className="w-[400px] h-[400px]"
-                />
-              </div>
+            <p className="text-blue-100 text-xl md:text-2xl">
+              Esta secção está a ser redesenhada para destacar as principais
+              tecnologias e ferramentas que domino.
+            </p>
+            <div className="text-blue-300 text-3xl font-semibold flex items-center gap-2">
+              Em breve
+              <span className="flex gap-1">
+                <span className="dot dot-1">.</span>
+                <span className="dot dot-2">.</span>
+                <span className="dot dot-3">.</span>
+              </span>
             </div>
           </div>
-          <div className="flex items-center justify-center absolute bottom-8 w-full">
+          <div className="absolute bottom-6 w-full flex items-center justify-center lg:hidden">
             <Link
               href="#projects"
               scroll={false}
@@ -263,101 +234,156 @@ export default function Home() {
               />
             </Link>
           </div>
-        </div>
-      </section>
-      <section
-        id="projects"
-        className="bg-zinc-900 min-h-screen w-full relative"
-      >
-        <div className="flex items-center justify-center pt-4">
-          <Link
-            href="#digital-skills"
-            scroll={false}
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .getElementById('digital-skills')
-                ?.scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            <img
-              src="/arrow.png"
-              alt="Seta para cima"
-              className="w-10 h-10 rotate-180 animate-pulse"
-            />
-          </Link>
-        </div>
-        <h2 className="text-blue-400 text-6xl font-bold text-center mt-8 mb-16">
-          PROJETOS
-        </h2>
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 gap-8">
-          {/* Card de Projeto */}
-          <div className="bg-zinc-800/50 rounded-2xl p-6 hover:scale-105 transition-transform">
-            <div className="p-4 bg-zinc-700/50 rounded-xl mb-4">
+        </section>
+        <section
+          id="projects"
+          className="bg-[#0c1018] min-h-screen w-full relative"
+        >
+          <div className="flex items-center justify-center pt-4 lg:hidden">
+            <Link
+              href="#digital-skills"
+              scroll={false}
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById('digital-skills')
+                  ?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               <img
-                src="/atlas.png"
-                alt="Projeto 1"
-                className="w-full h-48 object-contain"
+                src="/arrow.png"
+                alt="Seta para cima"
+                className="w-10 h-10 rotate-180 animate-pulse"
               />
-            </div>
-            <h3 className="text-blue-400 text-2xl font-bold mb-2">
-              ATLAS — Sistema de Gestão Logística de Transportes
-            </h3>
-            <p className="text-blue-100 mb-4">
-              Projeto desenvolvido no âmbito da PAP do curso de Informática de
-              Gestão da{' '}
-              <a
-                href="https://alentecno.pt"
-                target="_blank"
-                className="text-blue-300"
-              >
-                Escola Tecnológica do Litoral Alentejano (ETLA)
-              </a>
-              , com o objetivo de criar uma aplicação para a gestão logística de
-              serviços de transporte de passageiros, públicos e privados. A
-              solução inclui um software em Visual Basic com base de dados em
-              SQL Server, uma interface prototipada em Figma e um website
-              informativo criado em HTML, CSS e JavaScript. O sistema visa
-              facilitar a gestão de frotas, horários, motoristas e reservas,
-              através de uma interface intuitiva e acessível.
-            </p>
-            <div className="flex gap-3">
-              <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">
-                Visual Basic
-              </span>
-              <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">
-                .NET Framework 4.7.2
-              </span>
-              <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">
-                WinForms
-              </span>
-              <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">
-                WebView2
-              </span>
-            </div>
-            <div className="flex gap-4 mt-4">
-              <a
-                href="https://github.com/orgs/atlaspap/repositories"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 flex items-center gap-2"
-              >
-                <img src="/github.png" alt="Github" className="w-6 h-6" />
-                Código
-              </a>
-              <a
-                href="https://atlas.etla.pt"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 flex items-center gap-2"
-              >
-                <img src="/website.png" alt="Link" className="w-6 h-6" />
-                Website (Offline)
-              </a>
+            </Link>
+          </div>
+          <h2 className="text-blue-400 text-6xl font-bold text-center mt-8 mb-16">
+            PROJETOS
+          </h2>
+          <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 gap-8">
+            {/* Card de Projeto */}
+            <div className="bg-zinc-800/50 rounded-2xl p-6 hover:scale-105 transition-transform">
+              <div className="p-4 bg-zinc-700/50 rounded-xl mb-4">
+                <img
+                  src="/atlas.png"
+                  alt="Projeto 1"
+                  className="w-full h-48 object-contain"
+                />
+              </div>
+              <h3 className="text-blue-400 text-2xl font-bold mb-2">
+                ATLAS — Sistema de Gestão Logística de Transportes
+              </h3>
+              <p className="text-blue-100 mb-4">
+                Projeto desenvolvido no âmbito da PAP do curso de Informática de
+                Gestão da{' '}
+                <a
+                  href="https://alentecno.pt"
+                  target="_blank"
+                  className="text-blue-300"
+                >
+                  Escola Tecnológica do Litoral Alentejano (ETLA)
+                </a>
+                , com o objetivo de criar uma aplicação para a gestão logística
+                de serviços de transporte de passageiros, públicos e privados. A
+                solução inclui um software em Visual Basic com base de dados em
+                SQL Server, uma interface prototipada em Figma e um website
+                informativo criado em HTML, CSS e JavaScript. O sistema visa
+                facilitar a gestão de frotas, horários, motoristas e reservas,
+                através de uma interface intuitiva e acessível.
+              </p>
+              <div className="flex gap-3">
+                <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">
+                  Visual Basic
+                </span>
+                <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">
+                  .NET Framework 4.7.2
+                </span>
+                <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">
+                  WinForms
+                </span>
+                <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">
+                  WebView2
+                </span>
+              </div>
+              <div className="flex gap-4 mt-4">
+                <a
+                  href="https://github.com/orgs/atlaspap/repositories"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 flex items-center gap-2"
+                >
+                  <img src="/github.png" alt="Github" className="w-6 h-6" />
+                  Código
+                </a>
+                <a
+                  href="https://atlas.etla.pt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 flex items-center gap-2"
+                >
+                  <img src="/website.png" alt="Link" className="w-6 h-6" />
+                  Website (Offline)
+                </a>
+              </div>
             </div>
           </div>
+        </section>
+        <div className="hidden lg:flex flex-col items-center gap-6 fixed right-12 top-1/2 -translate-y-1/2 z-20">
+          {prevSection && (
+            <button
+              type="button"
+              onClick={() => handleSmoothScroll(prevSection)}
+              className="transition-transform hover:scale-110"
+              aria-label="Ir para a secção anterior"
+            >
+              <img
+                src="/arrow.png"
+                alt="Seta para cima"
+                className="w-12 h-12 rotate-180 animate-pulse"
+              />
+            </button>
+          )}
+          {nextSection && (
+            <button
+              type="button"
+              onClick={() => handleSmoothScroll(nextSection)}
+              className="transition-transform hover:scale-110"
+              aria-label="Ir para a próxima secção"
+            >
+              <img
+                src="/arrow.png"
+                alt="Seta para baixo"
+                className="w-12 h-12 animate-pulse"
+              />
+            </button>
+          )}
         </div>
-      </section>
-    </main>
+      </main>
+      <style jsx>{`
+        .dot {
+          animation: dotBounce 1.2s infinite ease-in-out;
+          display: inline-block;
+          font-size: 2rem;
+        }
+        .dot-2 {
+          animation-delay: 0.2s;
+        }
+        .dot-3 {
+          animation-delay: 0.4s;
+        }
+        @keyframes dotBounce {
+          0%,
+          60%,
+          100% {
+            transform: translateY(0);
+            opacity: 0.2;
+          }
+          30% {
+            transform: translateY(-6px);
+            opacity: 1;
+          }
+        }
+      `}</style>
+    </>
   );
 }
