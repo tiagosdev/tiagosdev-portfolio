@@ -179,7 +179,7 @@ export default function Home() {
         </section>
         <section
           id="digital-skills"
-          className="bg-[#0c1018] min-h-screen w-full relative flex flex-col items-center justify-center overflow-hidden"
+          className="bg-[#0c1018] min-h-screen w-full relative flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6"
         >
           <div className="absolute top-6 w-full flex items-center justify-center lg:hidden">
             <Link
@@ -199,15 +199,15 @@ export default function Home() {
               />
             </Link>
           </div>
-          <div className="max-w-3xl mx-auto px-6 flex flex-col items-center text-center gap-6">
-            <h2 className="text-blue-400 text-5xl md:text-6xl font-bold">
+          <div className="max-w-3xl mx-auto w-full flex flex-col items-center text-center gap-6">
+            <h2 className="text-blue-400 text-4xl sm:text-5xl md:text-6xl font-bold">
               Capacidades Técnicas
             </h2>
-            <p className="text-blue-100 text-xl md:text-2xl">
+            <p className="text-blue-100 text-lg sm:text-xl md:text-2xl">
               Esta secção está a ser redesenhada para destacar as principais
               tecnologias e ferramentas que domino.
             </p>
-            <div className="text-blue-300 text-3xl font-semibold flex items-center gap-2">
+            <div className="text-blue-300 text-2xl sm:text-3xl font-semibold flex items-center gap-2">
               Em breve
               <span className="flex gap-1">
                 <span className="dot dot-1">.</span>
@@ -237,9 +237,9 @@ export default function Home() {
         </section>
         <section
           id="projects"
-          className="bg-[#0c1018] min-h-screen w-full relative"
+          className="bg-[#0c1018] min-h-screen w-full relative px-4 sm:px-6 pb-16"
         >
-          <div className="flex items-center justify-center pt-4 lg:hidden">
+          <div className="flex items-center justify-center pt-6 lg:hidden">
             <Link
               href="#digital-skills"
               scroll={false}
@@ -257,23 +257,23 @@ export default function Home() {
               />
             </Link>
           </div>
-          <h2 className="text-blue-400 text-6xl font-bold text-center mt-8 mb-16">
+          <h2 className="text-blue-400 text-4xl sm:text-5xl md:text-6xl font-bold text-center mt-10 mb-12">
             PROJETOS
           </h2>
-          <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 gap-8">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             {/* Card de Projeto */}
-            <div className="bg-zinc-800/50 rounded-2xl p-6 hover:scale-105 transition-transform">
-              <div className="p-4 bg-zinc-700/50 rounded-xl mb-4">
+            <div className="bg-zinc-800/50 rounded-2xl p-5 sm:p-6 hover:scale-[1.02] transition-transform">
+              <div className="p-4 bg-zinc-700/50 rounded-xl mb-4 flex items-center justify-center">
                 <img
                   src="/atlas.png"
                   alt="Projeto 1"
-                  className="w-full h-48 object-contain"
+                  className="w-full max-h-48 object-contain"
                 />
               </div>
-              <h3 className="text-blue-400 text-2xl font-bold mb-2">
+              <h3 className="text-blue-400 text-xl sm:text-2xl font-bold mb-2 text-center lg:text-left">
                 ATLAS — Sistema de Gestão Logística de Transportes
               </h3>
-              <p className="text-blue-100 mb-4">
+              <p className="text-blue-100 text-base sm:text-lg mb-4">
                 Projeto desenvolvido no âmbito da PAP do curso de Informática de
                 Gestão da{' '}
                 <a
@@ -291,7 +291,7 @@ export default function Home() {
                 facilitar a gestão de frotas, horários, motoristas e reservas,
                 através de uma interface intuitiva e acessível.
               </p>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm">
                   Visual Basic
                 </span>
@@ -305,7 +305,7 @@ export default function Home() {
                   WebView2
                 </span>
               </div>
-              <div className="flex gap-4 mt-4">
+              <div className="flex flex-wrap gap-4 mt-4">
                 <a
                   href="https://github.com/orgs/atlaspap/repositories"
                   target="_blank"
