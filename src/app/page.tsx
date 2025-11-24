@@ -75,18 +75,22 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img src="/github.png" alt="Github" className="w-8 h-8 sm:w-10 sm:h-10" />
+                    <img
+                      src="/github.png"
+                      alt="Github"
+                      className="w-8 h-8 sm:w-10 sm:h-10"
+                    />
                   </a>
                   <a
                     href="https://discord.gg/9N23bsKXeb"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                  <img
-                    src="/discord.png"
-                    alt="Discord"
-                    className="w-8 h-8 sm:w-10 sm:h-10"
-                  />
+                    <img
+                      src="/discord.png"
+                      alt="Discord"
+                      className="w-8 h-8 sm:w-10 sm:h-10"
+                    />
                   </a>
                   <a
                     href="https://linkedin.com/in/tiagosdev"
@@ -104,7 +108,11 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img src="/x.png" alt="X (Twitter)" className="w-8 h-8 sm:w-10 sm:h-10" />
+                    <img
+                      src="/x.png"
+                      alt="X (Twitter)"
+                      className="w-8 h-8 sm:w-10 sm:h-10"
+                    />
                   </a>
                 </div>
               </div>
