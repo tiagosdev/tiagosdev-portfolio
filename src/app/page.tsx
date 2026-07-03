@@ -93,7 +93,7 @@ export default function Home() {
                     />
                   </a>
                   <a
-                    href="https://linkedin.com/in/tiagosdev"
+                    href="https://www.linkedin.com/in/tiago-vieira-da-silva-74a39b384/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
