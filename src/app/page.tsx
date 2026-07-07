@@ -332,10 +332,7 @@ export default function Home() {
                   <img src="/website.png" alt="Link" className="w-6 h-6" />
                   Website (Offline)
                 </a>
-              </div>
-              <div className="pb-4 text-center">
-                <h6 className="text-xs text-zinc-700">2026 © Tiago Vieira da Silva. All rights reserved.</h6>
-              </div>               
+              </div>              
             </div>
           </div>
         </section>
@@ -369,6 +366,11 @@ export default function Home() {
             </button>
           )}
         </div>
+        <footer>
+          <div className="pb-4 text-center">
+            <h6 className="text-xs text-zinc-700">2026 © Tiago Vieira da Silva. All rights reserved.</h6>
+          </div> 
+        </footer>
       </main>
       <style jsx>{`
         .dot {
