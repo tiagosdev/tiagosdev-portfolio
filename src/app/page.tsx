@@ -334,6 +334,9 @@ export default function Home() {
                 </a>
               </div>
             </div>
+            <div className="pb-4 text-center">
+              <h6 className="text-xs text-zinc-700">2026 © Tiago Vieira da Silva. All rights reserved.</h6>
+            </div> 
           </div>
         </section>
         <div className="hidden lg:flex flex-col items-center gap-6 fixed right-12 top-1/2 -translate-y-1/2 z-20">
@@ -365,9 +368,6 @@ export default function Home() {
               />
             </button>
           )}
-          <div className="pb-4 text-center">
-            <h6 className="text-xs text-zinc-700">2026 © Tiago Vieira da Silva. All rights reserved.</h6>
-          </div> 
         </div>
       </main>
       <style jsx>{`
