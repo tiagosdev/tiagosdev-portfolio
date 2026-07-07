@@ -366,6 +366,9 @@ export default function Home() {
             </button>
           )}
         </div>
+        <div className="pb-4 text-center">
+          <h6 className="text-xs text-zinc-700">2026 © Tiago Vieira da Silva. All rights reserved.</h6>
+        </div> 
       </main>
       <style jsx>{`
         .dot {
